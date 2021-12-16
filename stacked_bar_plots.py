@@ -9,9 +9,9 @@ import netCDF4
 import sqlite3
 import math
 
-# create DataFrame from file names list for ease of sorting and naming
+
 def date_df(lst):
-    
+    ''' create DataFrame from file names'''
     time_list = []
     name_list = []
     for i in range(len(lst)):
