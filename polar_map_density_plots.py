@@ -27,7 +27,7 @@ SPRINGdatafield = np.zeros((385, 1025))
 counter = 0
 
 # sum INP concentrations in each bin
-for i in range(100, 101):
+for i in range(len(SpringINPnumber_file)):
     nc_INP = netCDF4.Dataset(SpringINPnumber_file[i])
     INPfield = nc_INP['inp_concentration']
     
