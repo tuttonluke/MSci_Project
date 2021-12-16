@@ -8,7 +8,8 @@ import numpy as np
 import glob
 
 # function to calculate INP concentration
-def INP_calc(VAdiam, VAmass, Temp): 
+def INP_calc(VAdiam, VAmass, Temp):
+    ''' calculate INP concentration ash particle parameters and temperature'''
     VApvol = (4/3) * math.pi * (VAdiam / 2)**3 # ash particle volume assuming sphere
     VApsa = (4) * math.pi * (VAdiam / 2)**2 * 2 # ash particle SA - multiplied by 2 assuming ash sphericity is actually 0.5
     VAvol = VAmass / 2300000 # ash volume (mass/density)
