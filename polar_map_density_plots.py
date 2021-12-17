@@ -12,7 +12,6 @@ import netCDF4
 import glob
 
 # files and unchanging parameters
-
 SpringINPnumber_file = sorted(glob.glob('/scratch/lt446/netscratch/bin_sum_nc_files/springINPnc/*'))
 AutumnINPnumber_file = sorted(glob.glob('/scratch/lt446/netscratch/bin_sum_nc_files/autumnINPnc/*'))
 
@@ -46,22 +45,17 @@ for i in range(len(SpringINPnumber_file)):
     # datafield = np.nansum(INPdata[10, :, :], axis = 0) # INP concentration at specific altitude
     
     # sum INP from each timestep
-    for k in range(385):
-        for l in range(1025):
-            SPRINGdatafield[k][l] +=  datafield[k][l]
-    
+    SPRINGdatafield += datafield
+   
+    # average INP concentration over the duration of the eruption
     counter += 1 
-
-# average INP concentration over the duration of the eruption
-for k in range(385):
-        for l in range(1025):
-            SPRINGdatafield[k][l] / counter
+SPRINGdatafield / counter
  
 # plot 
 y1, x1 = np.meshgrid(lon, lat)
 
 fig = plt.figure(figsize=(10, 10))
-extent = [-13000000, 13000000, -13000000, 13000000] # W, E, S, N
+extent = [-8000000, 8000000, -9000000, 8500000] # W, E, S, N
 ax = fig.add_subplot(1, 1, 1, projection = ccrs.NorthPolarStereo()) 
 ax.set_extent(extent, crs = ccrs.NorthPolarStereo())   
 ax.gridlines()                                  
@@ -73,9 +67,9 @@ levs = [0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000, 100000]         # the contour
 cs = ax.contourf(y1[:,:], x1[:,:], SPRINGdatafield[:,:], levels = levs,
              transform = ccrs.PlateCarree(), cmap = INP_cmap, norm = INP_norm)
 # adding the gridline labels on the map and add titles and the colorbar:
-# ax.gridlines(draw_labels = True, dms = False, x_inline = False, y_inline = False)
+ax.gridlines(draw_labels = True, dms = False, x_inline = False, y_inline = False)
 ax.set_title('Average INP concentration Over Entire Eruption - Spring', fontsize = 14, pad = 20)
 plt.colorbar(cs, orientation = 'horizontal', ticks = tick_levels, label = '# / L', pad = 0.05, shrink = 0.7);
 
-fig.savefig('SPRINGpolar_INP.png')
+fig.savefig('SPRINGpolar_INPdensity.png')
 plt.show()
