@@ -6,4 +6,4 @@ Repository for code written for my MSci project in Chemistry at the University o
 
 
 
-[lt446 Part III Project.pdf](https://github.com/tuttonluke/MSci_Project/files/12640662/lt446.Part.III.Project.pdf)
+Thesis in full: [lt446 Part III Project.pdf](https://github.com/tuttonluke/MSci_Project/files/12640662/lt446.Part.III.Project.pdf)
